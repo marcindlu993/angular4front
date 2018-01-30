@@ -1,0 +1,29 @@
+<div>
+     <button type="button" class="btn btn-secondary">Create new task</button>
+     <button type="button" class="btn btn-secondary">Create new task</button>
+
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col" *ngFor="let item of headerTable">{{ item }}
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let task of tasks">
+      <td>{{ task.id }}</td>
+      <td>{{ task.startDate | date }}</td>
+      <td>{{ task.endDate | date}}</td>
+      <td>{{ task.lastModifyDate | date }}</td>
+      <td>{{ task.taskName }}</td>
+      <td>{{ task.Author }}</td>
+      <td><button type="button" class="btn btn-secondary">Delete</button></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+
+<app-add-task></app-add-task>
