@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
   selector: 'app-shared',
@@ -9,23 +10,28 @@ export class SharedComponent implements OnInit {
 
   menuLeft: any[] = [
     { 
-      "name": "Tasks", "id": "0", "icon": "assignment", 
+      "name": "Tasks", "id": "0", "icon": "assignment", "route": ""
     },
     {
-      "name": "Employers", "id": "0", "icon": "accessibility"
+      "name": "Employees", "id": "0", "icon": "accessibility", "route": "employees"
     },
     {
-      "name": "Settings", "id": "0", "icon": "build"
+      "name": "Settings", "id": "0", "icon": "build", "route": "employees"
     },
     {
-      "name": "Logs", "id": "0", "icon": "announcement"
+      "name": "Logs", "id": "0", "icon": "announcement", "route": "employees"
     },
     {
-      "name": "About", "id": "0", "icon": "favorite"
+      "name": "About", "id": "0", "icon": "favorite", "route": "employees"
     }
   ];
 
-  constructor() { }
+  constructor(private router: Router) { }
+
+  goRoute(routeString: string) {
+    console.log(routeString);
+    this.router.navigate([routeString]);
+  }
 
   ngOnInit() {
     this.menuLeft;

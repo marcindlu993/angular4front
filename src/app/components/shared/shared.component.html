@@ -2,14 +2,14 @@
   <div class="row justify-content-between">
     <div class="col-2">
       <div class="btn-group-vertical menu-left">
-          <button type="button" class="btn btn-secondary" *ngFor="let item of menuLeft">
+          <button type="button" class="btn btn-secondary" (click)="goRoute(item.route)" *ngFor="let item of menuLeft">
             <mat-icon>{{item.icon}}</mat-icon>
             {{ item.name }}
           </button>
       </div>
     </div>
-    <div class="col-10">
-      <app-task></app-task>
+     <div class="col-10"> 
+      <router-outlet></router-outlet>
     </div>
   </div>
 </div>

@@ -1,5 +1,5 @@
 <div class="tab-options">
-     <button type="button" class="btn btn-success btn-tab-options">Create new task</button>
+     <button type="button" class="btn btn-success btn-tab-options">Add new employee</button>
 </div>
 
 <table class="table">
@@ -10,11 +10,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let task of tasks">
-      <td>{{ task.id }}</td>
-      <td>{{ task.endDate | date}}</td>
-      <td>{{ task.taskName }}</td>
-      <td>{{ task.Author }}</td>
+    <tr *ngFor="let employee of employees">
+      <td>{{ employee.id }}</td>
+      <td>{{ employee.name }}</td>
+      <td>{{ employee.secondName }}</td>
+      <td>{{ employee.maxTFE }}</td>
+      <td>{{ employee.freeTFE }}</td>
+      <td>{{ employee.projects }}</td>
       <td><button type="button" class="btn btn-danger btn-table">Delete</button></td>
       <td><button type="button" class="btn btn-warning btn-table">Edit</button></td>
     </tr>
@@ -23,5 +25,3 @@
 
 
 
-
-<!-- <app-add-task></app-add-task> -->
