@@ -38,3 +38,10 @@ mat-icon {
         min-width: 500px;
     }
 }
+
+left-nav-my {
+        background-color: #6c757d;
+    padding: 0px;
+    min-width: 125px;
+    max-width: 170px;
+}

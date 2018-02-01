@@ -6,6 +6,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material';
+import { BsDatepickerModule }from 'ngx-bootstrap/datepicker';
+import { FormGroup,FormControl,ReactiveFormsModule } from '@angular/forms';
+import { CollapseModule } from 'ngx-bootstrap';
 
 
 import { DataService } from './services/data.service';
@@ -20,7 +23,8 @@ import { EmployeeComponent } from './components/employee/employee.component';
 const appRoutes: Routes = [
   { path: '', redirectTo: 'tasks', pathMatch: 'full' },
   { path: 'tasks', component: TaskComponent },
-  { path: 'employees', component: EmployeeComponent }
+  { path: 'employees', component: EmployeeComponent },
+  { path: 'addTask', component: AddTaskComponent }
 ]
 
 @NgModule({
@@ -30,7 +34,7 @@ const appRoutes: Routes = [
     TaskComponent,
     SharedComponent,
     AddTaskComponent,
-    EmployeeComponent,
+    EmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,10 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
-    RouterModule.forRoot(appRoutes, {useHash: true})
+    RouterModule.forRoot(appRoutes, {useHash: true}),
+    BsDatepickerModule.forRoot(),
+    ReactiveFormsModule,
+    [CollapseModule]
   ],
   providers: [DataService],
   bootstrap: [AppComponent]

@@ -1,5 +1,7 @@
 <div class="tab-options">
-     <button type="button" class="btn btn-success btn-tab-options">Create new task</button>
+     <button type="button" routerLink="/addTask" class="btn btn-success btn-tab-options">
+       Create new task
+      </button>
 </div>
 
 <table class="table">
@@ -10,13 +12,13 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let task of tasks">
+    <tr *ngFor="let task of tasks; let i = index">
       <td>{{ task.id }}</td>
       <td>{{ task.endDate | date}}</td>
       <td>{{ task.taskName }}</td>
       <td>{{ task.Author }}</td>
-      <td><button type="button" class="btn btn-danger btn-table">Delete</button></td>
-      <td><button type="button" class="btn btn-warning btn-table">Edit</button></td>
+      <td><button type="button" class="btn btn-danger btn-table" (click)="deleteTask(i)">Delete</button></td>
+      <td><button type="button" class="btn btn-warning btn-table" (click)="editTask(i)">Edit</button></td>
     </tr>
   </tbody>
 </table>

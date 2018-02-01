@@ -1,3 +1,27 @@
-<div class="col-4">
+<div class="container">
+    <h5>Create task</h5>
+    <form [formGroup]="createForm" (ngSubmit)="AddTask()">
+        <div class="form-group">
+            <label for="taskName">Name</label>
+            <input type="text" class="form-control" formControlName="taskName" required>
+        </div>
+        <div class="form-group">
+            <div class="row">
+                <div class="col-xs-12 col-12 col-md-4 form-group">
+                    <input class="form-control" #drp="bsDaterangepicker" formControlName="dateRange" bsDaterangepicker [(ngModel)]="bsRangeValue">
+                </div>
+                <div class="col-xs-12 col-12 col-md-3 form-group">
+                    <button class="btn btn-success" (click)="drp.toggle()">Choose date range</button>
+                </div>
+            </div>
+        </div>
 
+        <div>
+            <label for="comment">Comment</label>
+            <textarea class="form-control" rows="5" formControlName="comment"></textarea>
+        </div>
+
+         <button type="submit" class="btn btn-success">Submit</button> 
+
+    </form>
 </div>

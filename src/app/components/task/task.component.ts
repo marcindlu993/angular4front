@@ -9,32 +9,40 @@ import { DataService } from '../../services/data.service';
 export class TaskComponent implements OnInit {
 
 d:Date = new Date(2000,1,1,1,1,1,1);
+
 headerTable:string[] = ["id", "end date", "name", "author"];
-tasks: any[] = [
+tasks: Task[] = [
   { 
-    "id": "1",  "startDate":this.d, "endDate":this.d, "lastModifyDate":this.d, "taskName": "string",  "author": "Duda",  "comment": "string"
+    "id": 1,  "startDate":this.d, "endDate":this.d, "lastModifyDate":this.d, "taskName": "string",  "author": "Duda",  "comment": "string"
   },
   {
-    "id": "2",  "startDate":this.d, "endDate":this.d, "lastModifyDate":this.d, "taskName": "string",  "author": "Duda",  "comment": "string"   
+    "id": 2,  "startDate":this.d, "endDate":this.d, "lastModifyDate":this.d, "taskName": "string",  "author": "Duda",  "comment": "string"   
   },
   {
-    "id": "3",  "startDate":this.d, "endDate":this.d, "lastModifyDate":this.d, "taskName": "string",  "author": "Duda",  "comment": "string"   
+    "id": 3,  "startDate":this.d, "endDate":this.d, "lastModifyDate":this.d, "taskName": "string",  "author": "Duda",  "comment": "string"   
   }
 ];
 
   constructor() { }
 
   ngOnInit() {
+    
+  }
 
+  deleteTask(index:number) {
+    this.tasks.splice(index, 1);
   }
 }
 
 class Task {
-  id:number;
-  startDate:Date;
-  endDate:Date;
-  lastModifyDate:Date;
-  taskName:string;
-  author:string;
-  comment:string;
+
+  constructor(
+    public id:number,
+    public startDate:Date,
+    public endDate:Date,
+    public lastModifyDate:Date,
+    public taskName:string,
+    public author:string,
+    public comment:string
+  ) { }
 }

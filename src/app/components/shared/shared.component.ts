@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
 
 @Component({
@@ -9,7 +9,7 @@ import { RouterModule, Routes, Router } from '@angular/router';
 export class SharedComponent implements OnInit {
 
   menuLeft: any[] = [
-    { 
+    {
       "name": "Tasks", "id": "0", "icon": "assignment", "route": ""
     },
     {
@@ -26,7 +26,11 @@ export class SharedComponent implements OnInit {
     }
   ];
 
-  constructor(private router: Router) { }
+  constructor(
+            private router: Router,
+            // private el: ElementRef,
+            // private rd: Renderer2
+          ) { }
 
   goRoute(routeString: string) {
     console.log(routeString);
@@ -36,5 +40,8 @@ export class SharedComponent implements OnInit {
   ngOnInit() {
     this.menuLeft;
   }
+  // setWidth(){
+  //   this.el
+  // }
 
 }
