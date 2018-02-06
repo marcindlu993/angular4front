@@ -18,4 +18,11 @@ export class EmployeeComponent implements OnInit {
   ngOnInit() {
     this.employees = this.employee.getEmployees();
   }
+
+  DeleteEmployee(emploId, i) {
+    this.employee.deleteEmployee(emploId).subscribe(res => {
+      console.log(res);
+      this.employees.splice(i, 1);
+    })
+  }
 }

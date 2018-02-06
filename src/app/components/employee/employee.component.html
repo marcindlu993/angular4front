@@ -10,14 +10,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let employee of employees">
+    <tr *ngFor="let employee of employees; let i = index">
       <td>{{ employee.Id }}</td>
       <td>{{ employee.Name }}</td>
       <td>{{ employee.SecondName }}</td>
       <td>{{ employee.MaxFte }}</td>
       <td>{{ employee.FreeFte }}</td>
       <!-- <td>{{ employee.projects }}</td> -->
-      <td><button type="button" class="btn btn-danger btn-table">Delete</button></td>
+      <td><button type="button" (click)="DeleteEmployee(employee.Id, i)" class="btn btn-danger btn-table">Delete</button></td>
       <td><button type="button" class="btn btn-warning btn-table">Edit</button></td>
     </tr>
   </tbody>

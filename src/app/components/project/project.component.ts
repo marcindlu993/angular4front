@@ -19,8 +19,10 @@ export class ProjectComponent implements OnInit {
     this.projects = this.project.getProjects();
   }
 
-  deleteProject(id)
-  {
-    this.project.deleteProject(id);
+  DeleteProject(projectId, i) {
+    this.project.deleteProject(projectId).subscribe(res => {
+      console.log(res);
+      this.projects.splice(i, 1);
+    })
   }
 }

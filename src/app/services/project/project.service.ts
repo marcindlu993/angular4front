@@ -20,7 +20,6 @@ export class ProjectService {
     return result;
   }
 
-  // TODO:
   addProject(proj) {
     console.log(proj);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
@@ -35,10 +34,8 @@ export class ProjectService {
     return this.http.post(`${this.apiUrl}/Projects`, data, { headers });
   }
 
-  deleteProject(id) {
-    console.log(`${this.apiUrl}/Projects/SetFlag/${id}`);
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    let response = this.http.post<number>(`${this.apiUrl}/Projects/SetFlag/${id}`, { headers });
-    console.log(response);
+  deleteProject(id): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    return this.http.post(`${this.apiUrl}/Projects/SetFlag/${id}`, "{}" ,{headers});
   }
 }

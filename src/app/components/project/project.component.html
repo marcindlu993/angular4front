@@ -17,7 +17,7 @@
       <td>{{ project.EndTime | date}}</td>
       <td>{{ project.Name }}</td>
       <!-- <td>{{ topic.Author }}</td> -->
-      <td><button type="button" class="btn btn-danger btn-table" (click)="deleteProject(project.Id)">Delete</button></td>
+      <td><button type="button" class="btn btn-danger btn-table" (click)="DeleteProject(project.Id, i)">Delete</button></td>
       <td><button type="button" class="btn btn-warning btn-table" (click)="editProject(project.Id)">Edit</button></td>
     </tr>
   </tbody>
