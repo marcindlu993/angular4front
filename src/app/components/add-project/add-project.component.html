@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="title-container">
+    <p>Create project</p>
+  </div>
+
+  <form [formGroup]="createProj" (ngSubmit)="AddProject()">
+    <div class="form-group">
+      <label for="Name">Name</label>
+      <input type="text" class="form-control" formControlName="Name" required>
+    </div>
+
+    <div class="form-group">
+      <label for="dateRange">Date range</label>
+      <div class="row">
+        <div class="col-xs-12 col-12 col-md-4">
+          <input readonly class="form-control" #drp="bsDaterangepicker" formControlName="DateRange" bsDaterangepicker [(ngModel)]="bsRangeValue">
+        </div>
+        <div class="col-xs-12 col-12 col-md-3">
+          <button class="btn btn-success" (click)="drp.toggle()">Set date range</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="comment">Comment</label>
+      <textarea class="form-control" rows="5" formControlName="Comment"></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>

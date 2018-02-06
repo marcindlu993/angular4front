@@ -1,5 +1,5 @@
 <div class="tab-options">
-     <button type="button" class="btn btn-success btn-tab-options">Add new employee</button>
+     <button type="button" routerLink="/add-employee" class="btn btn-success btn-tab-options">Add new employee</button>
 </div>
 
 <table class="table">
@@ -11,12 +11,12 @@
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees">
-      <td>{{ employee.id }}</td>
-      <td>{{ employee.name }}</td>
-      <td>{{ employee.secondName }}</td>
-      <td>{{ employee.maxTFE }}</td>
-      <td>{{ employee.freeTFE }}</td>
-      <td>{{ employee.projects }}</td>
+      <td>{{ employee.Id }}</td>
+      <td>{{ employee.Name }}</td>
+      <td>{{ employee.SecondName }}</td>
+      <td>{{ employee.MaxFte }}</td>
+      <td>{{ employee.FreeFte }}</td>
+      <!-- <td>{{ employee.projects }}</td> -->
       <td><button type="button" class="btn btn-danger btn-table">Delete</button></td>
       <td><button type="button" class="btn btn-warning btn-table">Edit</button></td>
     </tr>

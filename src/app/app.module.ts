@@ -7,34 +7,35 @@ import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material';
 import { BsDatepickerModule }from 'ngx-bootstrap/datepicker';
-import { FormGroup,FormControl,ReactiveFormsModule } from '@angular/forms';
+import { FormGroup,FormControl,ReactiveFormsModule, Validators } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap';
 
-
-import { DataService } from './services/data.service';
+import { EmployeeService } from './services/employee/employee.service';
+import { ProjectService } from './services/project/project.service';
 
 import { AppComponent } from './app.component';
-import { UserComponent } from './components/user/user.component';
-import { TaskComponent } from './components/task/task.component';
 import { SharedComponent } from './components/shared/shared.component';
-import { AddTaskComponent } from './components/task/add-task/add-task.component';
 import { EmployeeComponent } from './components/employee/employee.component';
+import { ProjectComponent } from './components/project/project.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
+import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: 'tasks', pathMatch: 'full' },
-  { path: 'tasks', component: TaskComponent },
+  { path: '', redirectTo: 'projects', pathMatch: 'full' },
+  { path: 'projects', component: ProjectComponent },
   { path: 'employees', component: EmployeeComponent },
-  { path: 'addTask', component: AddTaskComponent }
+  { path: 'add-project', component: AddProjectComponent },
+  { path: 'add-employee', component: AddEmployeeComponent }
 ]
 
 @NgModule({
   declarations: [
     AppComponent,
-    UserComponent,
-    TaskComponent,
+    ProjectComponent,
     SharedComponent,
-    AddTaskComponent,
-    EmployeeComponent
+    EmployeeComponent,
+    AddProjectComponent,
+    AddEmployeeComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +50,7 @@ const appRoutes: Routes = [
     ReactiveFormsModule,
     [CollapseModule]
   ],
-  providers: [DataService],
+  providers: [EmployeeService, ProjectService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,0 +1,25 @@
+<div class="tab-options">
+     <button type="button" routerLink="/add-project" class="btn btn-success btn-tab-options">
+       Create new project
+      </button>
+</div>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col" *ngFor="let item of headerTable">{{ item }}</th>
+      <th></th><th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let project of projects; let i = index">
+      <td>{{ project.Id }}</td>
+      <td>{{ project.EndTime | date}}</td>
+      <td>{{ project.Name }}</td>
+      <!-- <td>{{ topic.Author }}</td> -->
+      <td><button type="button" class="btn btn-danger btn-table" (click)="deleteProject(project.Id)">Delete</button></td>
+      <td><button type="button" class="btn btn-warning btn-table" (click)="editProject(project.Id)">Edit</button></td>
+    </tr>
+  </tbody>
+</table>
+

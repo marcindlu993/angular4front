@@ -10,7 +10,7 @@ export class SharedComponent implements OnInit {
 
   menuLeft: any[] = [
     {
-      "name": "Tasks", "id": "0", "icon": "assignment", "route": ""
+      "name": "Projects", "id": "0", "icon": "assignment", "route": ""
     },
     {
       "name": "Employees", "id": "0", "icon": "accessibility", "route": "employees"

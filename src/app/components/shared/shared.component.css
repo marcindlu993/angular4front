@@ -29,18 +29,35 @@ mat-icon {
     float: left;
 }
 
-@media screen and (max-width: 480px){
+@media screen and (max-width: 767px){
     .col-2 {
-        max-width: 20px;
+        min-width: 40px;
+        max-width: 50px;
+    }
+
+    .menu-left {
+        min-width: 40px;
+        max-width: 50px;
     }
     
-    .col-10 {
-        min-width: 500px;
+    .btn {
+        max-width: 50px;
+        font-size: 0px;
     }
+
+    .col-md-10 {
+        max-width: 90%;
+    } 
+}
+
+@media screen and (max-width: 500px){
+    .col-md-10 {
+        max-width: 83%;
+    } 
 }
 
 left-nav-my {
-        background-color: #6c757d;
+    background-color: #6c757d;
     padding: 0px;
     min-width: 125px;
     max-width: 170px;
