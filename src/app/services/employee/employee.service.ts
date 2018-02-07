@@ -20,8 +20,24 @@ export class EmployeeService {
   }
 
   addEmployee(employee): Observable<any> {
+    console.log(employee);
     let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this.http.post(`${this.apiUrl}/Employees`, employee, {headers});
+    var data = {
+      Name: employee.Name,
+      SecondName: employee.SecondName,
+      MaxFte: employee.MaxFte
+    }
+    return this.http.post(`${this.apiUrl}/Employees`, data, {headers});
+  }
+
+  updateEmployee(employee): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    var data = {
+      Name: employee.Name,
+      SecondName: employee.SecondName,
+      Comment: employee.Comment
+    }
+    return this.http.put(`${this.apiUrl}/Employees/${employee.Id}`, data, {headers});
   }
 
   deleteEmployee(id): Observable<any> {

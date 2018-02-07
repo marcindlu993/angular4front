@@ -16,6 +16,9 @@ export class SharedComponent implements OnInit {
       "name": "Employees", "id": "0", "icon": "accessibility", "route": "employees"
     },
     {
+      "name": "Operations", "id": "0", "icon": "folder", "route": "operation"
+    },
+    {
       "name": "Settings", "id": "0", "icon": "build", "route": "employees"
     },
     {
@@ -40,8 +43,4 @@ export class SharedComponent implements OnInit {
   ngOnInit() {
     this.menuLeft;
   }
-  // setWidth(){
-  //   this.el
-  // }
-
 }

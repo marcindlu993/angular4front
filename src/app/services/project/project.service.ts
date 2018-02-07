@@ -30,9 +30,21 @@ export class ProjectService {
       Name: proj.Name,
       Comment: proj.Comment
     }
-    console.log(data);
     return this.http.post(`${this.apiUrl}/Projects`, data, { headers });
   }
+
+  updateProject(proj): Observable<any> {
+    let headers = new HttpHeaders().set('Content-Type','application/json');
+    var data = {
+      StartDate: proj.DateRange[0],
+      EndDate: proj.DateRange[1],
+      LastModifyDate: proj.DateRange[0],
+      Name: proj.Name,
+      Comment: proj.Comment
+    }
+    return this.http.put(`${this.apiUrl}/Projects/${proj.Id}`, data, {headers});
+  }
+
 
   deleteProject(id): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type','application/json');

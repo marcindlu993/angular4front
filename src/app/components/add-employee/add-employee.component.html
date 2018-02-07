@@ -1,9 +1,5 @@
 <div class="container">
-  <div class="title-container">
-    <p>Add employee</p>
-  </div>
-
-  <form [formGroup]="addEmplo" (ngSubmit)="AddEmployee()">
+  <form [formGroup]="addEmplo" (ngSubmit)="Submit()">
     <div class="form-group">
       <label for="Name">Name</label>
       <input type="text" class="form-control" formControlName="Name">
@@ -27,7 +23,6 @@
         Only 0 - 3.0 range is valid
       </div>
     </div>
-
     <button type="submit" class="btn btn-success">Submit</button>
   </form>
 </div>

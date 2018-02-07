@@ -9,6 +9,7 @@ import { MatIconModule } from '@angular/material';
 import { BsDatepickerModule }from 'ngx-bootstrap/datepicker';
 import { FormGroup,FormControl,ReactiveFormsModule, Validators } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 import { EmployeeService } from './services/employee/employee.service';
 import { ProjectService } from './services/project/project.service';
@@ -19,13 +20,15 @@ import { EmployeeComponent } from './components/employee/employee.component';
 import { ProjectComponent } from './components/project/project.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
+import { OperationComponent } from './components/operation/operation.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'projects', pathMatch: 'full' },
   { path: 'projects', component: ProjectComponent },
   { path: 'employees', component: EmployeeComponent },
   { path: 'add-project', component: AddProjectComponent },
-  { path: 'add-employee', component: AddEmployeeComponent }
+  { path: 'add-employee', component: AddEmployeeComponent },
+  { path: 'operation', component: OperationComponent }
 ]
 
 @NgModule({
@@ -35,7 +38,8 @@ const appRoutes: Routes = [
     SharedComponent,
     EmployeeComponent,
     AddProjectComponent,
-    AddEmployeeComponent
+    AddEmployeeComponent,
+    OperationComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +52,8 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes, {useHash: true}),
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
-    [CollapseModule]
+    [CollapseModule],
+    ModalModule.forRoot()
   ],
   providers: [EmployeeService, ProjectService],
   bootstrap: [AppComponent]
