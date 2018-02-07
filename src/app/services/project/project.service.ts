@@ -21,7 +21,6 @@ export class ProjectService {
   }
 
   addProject(proj) {
-    console.log(proj);
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     var data = {
       StartDate: proj.DateRange[0],
@@ -40,7 +39,8 @@ export class ProjectService {
       EndDate: proj.DateRange[1],
       LastModifyDate: proj.DateRange[0],
       Name: proj.Name,
-      Comment: proj.Comment
+      Comment: proj.Comment,
+      Id: proj.Id
     }
     return this.http.put(`${this.apiUrl}/Projects/${proj.Id}`, data, {headers});
   }

@@ -14,23 +14,22 @@ export class AddProjectComponent implements OnInit {
   createProj: FormGroup;
   minDate = new Date();
   bsRangeValue: any = [new Date(), new Date()];
-
   constructor(private project: ProjectService) { }
 
   ngOnInit() {
-        if(this.message == undefined)
-      {
-        this.isEdit = false;
-        this.message = [];
-        this.message.Name = '';
-        this.message.DateRange = '';
-        this.message.Comment = '';
-      }
+    // TODO: Rangevalue
+    if (this.message == undefined) {
+      this.isEdit = false;
+      this.message = [];
+      this.message.Name = '';
+      this.message.DateRange = '';
+      this.message.Comment = '';
+    }
     this.createProj = new FormGroup({
       Id: new FormControl(this.message.Id),
       IsActive: new FormControl(this.message.IsActive),
       Name: new FormControl(this.message.Name),
-      DateRange: new FormControl(this.message.DateRange),
+      DateRange: new FormControl(this.bsRangeValue),
       Comment: new FormControl(this.message.Comment)
     });
   }
@@ -44,7 +43,7 @@ export class AddProjectComponent implements OnInit {
 
   UpdateProject() {
     if (this.createProj.valid) {
-      this.project.updateProject(this.createProj.value).subscribe(res =>{
+      this.project.updateProject(this.createProj.value).subscribe(res => {
       });
     }
   }
