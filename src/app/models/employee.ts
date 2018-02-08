@@ -1,16 +1,24 @@
-export class Employee {
+export interface IEmploeesDTO {
+  EmploeeId: number;
+  Name: string;
+  SecondName: string;
+  MaxFte: number;
+  FreeFte: number;
+  IsActive: boolean;
+}
+
+export class EmployeeModel {
   Id: number;
   Name: string;
   SecondName: string;
   MaxFte: number;
   FreeFte: number;
 
-  constructor(id, name, secondName, maxFte, freeFte)
-  {
-    this.Id = id,
-    this.Name = name, 
-    this.SecondName = secondName, 
-    this.MaxFte = maxFte, 
-    this.FreeFte = freeFte
+  constructor(data: IEmploeesDTO) {
+   this.Id = data.EmploeeId;
+   this.Name = data.Name;
+   this.FreeFte = data.FreeFte;
+   this.MaxFte = data.MaxFte;
+   this.SecondName = data.SecondName;
   }
 }

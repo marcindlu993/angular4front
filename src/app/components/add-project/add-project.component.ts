@@ -1,5 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProjectService } from "../../services/project/project.service";
 
 @Component({
@@ -10,9 +10,10 @@ import { ProjectService } from "../../services/project/project.service";
 export class AddProjectComponent implements OnInit {
 
   @Input() message: any;
+  @Output() close = new EventEmitter<boolean>(false);
   isEdit: boolean = true;
   createProj: FormGroup;
-  minDate = new Date();
+  // minDate = new Date();
   bsRangeValue: any = [new Date(), new Date()];
   constructor(private project: ProjectService) { }
 
@@ -22,14 +23,16 @@ export class AddProjectComponent implements OnInit {
       this.isEdit = false;
       this.message = [];
       this.message.Name = '';
-      this.message.DateRange = '';
+      this.message.StartDate = '';
+      this.message.EndDate = '';
       this.message.Comment = '';
     }
     this.createProj = new FormGroup({
       Id: new FormControl(this.message.Id),
       IsActive: new FormControl(this.message.IsActive),
       Name: new FormControl(this.message.Name),
-      DateRange: new FormControl(this.bsRangeValue),
+      StartDate: new FormControl(this.message.StartDate),
+      EndDate: new FormControl(this.message.EndDate),
       Comment: new FormControl(this.message.Comment)
     });
   }
@@ -44,6 +47,7 @@ export class AddProjectComponent implements OnInit {
   UpdateProject() {
     if (this.createProj.valid) {
       this.project.updateProject(this.createProj.value).subscribe(res => {
+        this.close.next(true);
       });
     }
   }

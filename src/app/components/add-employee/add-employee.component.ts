@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { EmployeeService } from "../../services/employee/employee.service";
 
@@ -10,6 +10,8 @@ import { EmployeeService } from "../../services/employee/employee.service";
 export class AddEmployeeComponent implements OnInit {
 
   @Input() message: any;
+
+  @Output() close = new EventEmitter<boolean>(false);
   isEdit: boolean = true;
   addEmplo: FormGroup;
 
@@ -48,6 +50,7 @@ export class AddEmployeeComponent implements OnInit {
   UpdateEmployee() {
     if (this.addEmplo.valid) {
       this.employee.updateEmployee(this.addEmplo.value).subscribe(res => {
+        this.close.next(true);
       });
     }
   }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
+import { EmployeeModel, IEmploeesDTO } from './../../models/employee'
+
+
 @Injectable()
 export class EmployeeService {
 
@@ -11,9 +14,9 @@ export class EmployeeService {
   getEmployees() {
     let result: any[] = [];
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(`${this.apiUrl}/Employees`, { headers }).subscribe((res: any[]) => {
+    this.http.get(`${this.apiUrl}/Employees`, { headers }).subscribe((res: IEmploeesDTO[]) => {
       res.forEach(element => {
-        result.push(element);
+        result.push(new EmployeeModel(element));
       });
     });
     return result;

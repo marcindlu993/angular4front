@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { ProjectService } from '../../services/project/project.service';
-import { Project } from '../../models/project';
+import { ProjectModel } from '../../models/project';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
@@ -16,7 +16,7 @@ export class ProjectComponent implements OnInit {
   message: any;
   projectIndex: number;
   modalRef: BsModalRef;
-  projects: Project[] = [];
+  projects: ProjectModel[] = [];
   config = {
     animated: true,
     keyboard: true,
@@ -41,26 +41,33 @@ export class ProjectComponent implements OnInit {
     this.projectIndex = i;
   }
 
-    setUpdateData(project) {
+  setUpdateData(project) {
     this.message = project;
   }
 
   openModalConfirm(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
- 
-    openModalEdit(template: TemplateRef<any>) {
+
+  openModalEdit(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(
       template,
       Object.assign({}, this.config, { class: 'gray modal-lg' })
     );
   }
 
+  closeModal(event) {
+    if (event) {
+      this.modalRef.hide();
+      this.projects = this.projectService.getProjects();
+    }
+  }
+
   confirmDelete(): void {
     this.DeleteProject(this.project.Id, this.projectIndex);
     this.modalRef.hide();
   }
- 
+
   decline(): void {
     this.modalRef.hide();
   }

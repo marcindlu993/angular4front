@@ -13,7 +13,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let project of projects; let i = index">
-      <td>{{ project.Id }}</td>
+      <td>{{ project.ProjectId }}</td>
       <td>{{ project.EndTime | date}}</td>
       <td>{{ project.Name }}</td>
       <!-- <td>{{ topic.Author }}</td> -->
@@ -42,6 +42,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-add-project [message]="message"></app-add-project>
+    <app-add-project [message]="message" (close)="closeModal($event)"></app-add-project>
   </div>
 </ng-template>

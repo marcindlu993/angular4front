@@ -11,7 +11,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let employee of employees; let i = index">
-      <td>{{ employee.Id }}</td>
+      <td>{{ employee.EmployeeId }}</td>
       <td>{{ employee.Name }}</td>
       <td>{{ employee.SecondName }}</td>
       <td>{{ employee.MaxFte }}</td>
@@ -42,6 +42,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-add-employee [message]="message"></app-add-employee>
+    <app-add-employee [message]="message" (close)="closeModal($event)"></app-add-employee>
   </div>
 </ng-template>

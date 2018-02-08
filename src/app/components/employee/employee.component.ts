@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { EmployeeService } from '../../services/employee/employee.service';
-import { Employee } from '../../models/employee';
+import { EmployeeModel } from '../../models/employee';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
@@ -18,7 +18,7 @@ export class EmployeeComponent implements OnInit {
   employee: any;
   message: any;
   employeeIndex: number;
-  employees: Employee[] = [];
+  employees: EmployeeModel[] = [];
   config = {
     animated: true,
     keyboard: true,
@@ -46,7 +46,7 @@ export class EmployeeComponent implements OnInit {
   }
 
   openModalConfirm(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template, {class: 'modal-sm'});
+    this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
   openModalEdit(template: TemplateRef<any>) {
@@ -55,13 +55,17 @@ export class EmployeeComponent implements OnInit {
       Object.assign({}, this.config, { class: 'gray modal-lg' })
     );
   }
- 
+  closeModal(event) {
+    if (event) {
+      this.modalRef.hide();
+      this.employees = this.employeeService.getEmployees();
+    }
+  }
   confirmDelete(): void {
-    console.log(this.employee);
     this.DeleteEmployee(this.employee.Id, this.employeeIndex);
     this.modalRef.hide();
   }
- 
+
   decline(): void {
     this.modalRef.hide();
   }

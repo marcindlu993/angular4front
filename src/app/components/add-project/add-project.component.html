@@ -8,8 +8,13 @@
     <div class="form-group">
       <label for="dateRange">Date range</label>
       <div class="row">
-        <div class="col-xs-12 col-12 col-md-4">
-          <input readonly class="form-control" #drp="bsDaterangepicker" formControlName="DateRange" bsDaterangepicker [(ngModel)]="bsRangeValue">
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input type="text" class="form-control" #dp="bsDatepicker" formControlName="StartDate" bsDatepicker [(bsValue)]="StartDate" 
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+        </div>
+        <div class="col-xs-12 col-12 col-md-4 form-group">
+          <input type="text" class="form-control" [minDate]="StartDate" #dp="bsDatepicker" formControlName="EndDate" bsDatepicker [(bsValue)]="EndDate" 
+          [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
         </div>
       </div>
     </div>
