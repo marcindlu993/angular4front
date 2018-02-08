@@ -10,6 +10,8 @@ import { BsDatepickerModule }from 'ngx-bootstrap/datepicker';
 import { FormGroup,FormControl,ReactiveFormsModule, Validators } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { EmployeeService } from './services/employee/employee.service';
 import { ProjectService } from './services/project/project.service';
@@ -55,7 +57,7 @@ const appRoutes: Routes = [
     [CollapseModule],
     ModalModule.forRoot()
   ],
-  providers: [EmployeeService, ProjectService],
+  providers: [EmployeeService, ProjectService, BsModalRef],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

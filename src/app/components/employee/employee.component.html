@@ -1,12 +1,13 @@
 <div class="tab-options">
-     <button type="button" routerLink="/add-employee" class="btn btn-success btn-tab-options">Add new employee</button>
+  <button type="button" (click)="openModalEdit(false)" class="btn btn-success btn-tab-options">Add new employee</button>
 </div>
 
 <table class="table">
   <thead class="thead-dark">
     <tr>
       <th scope="col" *ngFor="let item of headerTable">{{ item }}</th>
-      <th></th><th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +18,8 @@
       <td>{{ employee.MaxFte }}</td>
       <td>{{ employee.FreeFte }}</td>
       <!-- <td>{{ employee.projects }}</td> -->
-      <td><button type="button" (click)="openModalConfirm(template); setDeleteData(employee, i)" 
-        class="btn btn-danger btn-table">Delete</button></td>
-      <td><button type="button" (click)="openModalEdit(templateEdit); setUpdateData(employee, i)" 
-        class="btn btn-warning btn-table">Edit</button></td>
+      <td><button type="button" (click)="openModalConfirm(template); setDeleteData(employee, i)" class="btn btn-danger btn-table">Delete</button></td>
+      <td><button type="button" (click)="openModalEdit(true, employee)" class="btn btn-warning btn-table">Edit</button></td>
     </tr>
   </tbody>
 </table>
@@ -29,19 +28,7 @@
   <div class="modal-body text-center">
     <p>Do you want to confirm delete?</p>
     <p>{{ employee.Name }} {{ employee.SecondName }}</p>
-    <button type="button" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
-  </div>
-</ng-template>
-
-<ng-template #templateEdit>  
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Edit employee</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <app-add-employee [message]="message" (close)="closeModal($event)"></app-add-employee>
+    <button type="button" class="btn btn-default" (click)="confirmDelete()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
   </div>
 </ng-template>

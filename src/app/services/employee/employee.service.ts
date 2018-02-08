@@ -2,14 +2,18 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Rx';
 import { EmployeeModel, IEmploeesDTO } from './../../models/employee'
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 
 @Injectable()
 export class EmployeeService {
 
   apiUrl: string = "http://localhost:1485/api";
+  updated = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) { 
+    this.updated.asObservable();
+  }
 
   getEmployees() {
     let result: any[] = [];
@@ -35,17 +39,21 @@ export class EmployeeService {
   updateEmployee(employee): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     var data = {
-      Id: employee.Id,
-      IsActive: employee.IsActive,
+      EmployeeId: employee.EmployeeId,
+      IsActive: true,
       Name: employee.Name,
       SecondName: employee.SecondName,
       Comment: employee.Comment
     }
-    return this.http.put(`${this.apiUrl}/Employees/${employee.Id}`, data, { headers });
+    return this.http.put(`${this.apiUrl}/Employees/${employee.EmployeeId}`, data, { headers });
   }
 
   deleteEmployee(id): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.http.post(`${this.apiUrl}/Employees/SetFlag/${id}`, "{}", { headers });
+  }
+
+  refresh(value: boolean){
+    this.updated.next(value);
   }
 }

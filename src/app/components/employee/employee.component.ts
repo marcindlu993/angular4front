@@ -3,6 +3,7 @@ import { EmployeeService } from '../../services/employee/employee.service';
 import { EmployeeModel } from '../../models/employee';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { AddEmployeeComponent } from "../add-employee/add-employee.component";
 
 @Component({
   selector: 'app-employee',
@@ -11,12 +12,9 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 })
 export class EmployeeComponent implements OnInit {
 
-  constructor(private employeeService: EmployeeService, private modalService: BsModalService) { }
-
   modalRef: BsModalRef;
   headerTable: string[] = ["id", "name", "second name", "maxFTE", "freeFTE"];
   employee: any;
-  message: any;
   employeeIndex: number;
   employees: EmployeeModel[] = [];
   config = {
@@ -25,9 +23,16 @@ export class EmployeeComponent implements OnInit {
     backdrop: true,
     ignoreBackdropClick: false
   };
+  
+  constructor(private employeeService: EmployeeService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.employees = this.employeeService.getEmployees();
+    this.employeeService.updated.subscribe(res => {
+      if(res){
+        this.employees = this.employeeService.getEmployees();
+      }
+    })
   }
 
   DeleteEmployee(emploId, i) {
@@ -41,28 +46,20 @@ export class EmployeeComponent implements OnInit {
     this.employeeIndex = i;
   }
 
-  setUpdateData(employee) {
-    this.message = employee;
-  }
-
   openModalConfirm(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
-  openModalEdit(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, this.config, { class: 'gray modal-lg' })
-    );
+  openModalEdit(isEdit, employee) {
+    const initialState = {
+      message: employee,
+      isEdit: isEdit
+    };
+    this.modalRef = this.modalService.show(AddEmployeeComponent, { initialState });
   }
-  closeModal(event) {
-    if (event) {
-      this.modalRef.hide();
-      this.employees = this.employeeService.getEmployees();
-    }
-  }
+
   confirmDelete(): void {
-    this.DeleteEmployee(this.employee.Id, this.employeeIndex);
+    this.DeleteEmployee(this.employee.EmployeeId, this.employeeIndex);
     this.modalRef.hide();
   }
 

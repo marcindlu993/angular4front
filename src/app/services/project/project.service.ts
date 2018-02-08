@@ -3,12 +3,17 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Observable } from 'rxjs/Rx';
 import { IProjectDTO, ProjectModel } from '../../models/project';
+import { BehaviorSubject } from "rxjs/BehaviorSubject";
 
 @Injectable()
 export class ProjectService {
 
   apiUrl: string = "http://localhost:1485/api";
-  constructor(private http: HttpClient) { }
+  updated = new BehaviorSubject<boolean>(false);
+
+  constructor(private http: HttpClient) {
+    this.updated.asObservable();
+   }
 
   getProjects() {
     let result: any[] = [];
@@ -43,16 +48,20 @@ export class ProjectService {
       LastModifyDate: new Date().toDateString(),
       Name: proj.Name,
       Comment: proj.Comment,
-      Id: proj.Id,
-      IsActive: proj.IsActive
+      ProjectId: proj.ProjectId,
+      IsActive: true
     }
         console.log(Date.now());
-    return this.http.put(`${this.apiUrl}/Projects/${proj.Id}`, data, {headers});
+    return this.http.put(`${this.apiUrl}/Projects/${proj.ProjectId}`, data, {headers});
   }
 
 
   deleteProject(id): Observable<any> {
     let headers = new HttpHeaders().set('Content-Type','application/json');
     return this.http.post(`${this.apiUrl}/Projects/SetFlag/${id}`, "{}" ,{headers});
+  }
+
+  refresh(value: boolean) {
+    this.updated.next(value);
   }
 }

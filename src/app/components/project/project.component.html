@@ -1,5 +1,5 @@
 <div class="tab-options">
-     <button type="button" routerLink="/add-project" class="btn btn-success btn-tab-options">
+     <button type="button" (click)="openModalEdit(false)" class="btn btn-success btn-tab-options">
        Create new project
       </button>
 </div>
@@ -20,7 +20,7 @@
       <td><button type="button" class="btn btn-danger btn-table" 
         (click)="openModalConfirm(template); setDeleteData(project, i)">Delete</button></td>
       <td><button type="button" class="btn btn-warning btn-table" 
-        (click)="openModalEdit(templateEdit); setUpdateData(project, i)">Edit</button></td>
+        (click)="openModalEdit(true, project)">Edit</button></td>
     </tr>
   </tbody>
 </table>
@@ -31,17 +31,5 @@
     <p>Project name: {{ project.Name }}</p>
     <button type="button" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
     <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
-  </div>
-</ng-template>
-
-<ng-template #templateEdit>  
-  <div class="modal-header">
-    <h4 class="modal-title pull-left">Edit project</h4>
-    <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
-      <span aria-hidden="true">&times;</span>
-    </button>
-  </div>
-  <div class="modal-body">
-    <app-add-project [message]="message" (close)="closeModal($event)"></app-add-project>
   </div>
 </ng-template>

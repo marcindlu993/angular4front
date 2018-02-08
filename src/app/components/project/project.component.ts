@@ -3,6 +3,7 @@ import { ProjectService } from '../../services/project/project.service';
 import { ProjectModel } from '../../models/project';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { AddProjectComponent } from "../add-project/add-project.component";
 
 @Component({
   selector: 'app-project',
@@ -28,6 +29,9 @@ export class ProjectComponent implements OnInit {
 
   ngOnInit() {
     this.projects = this.projectService.getProjects();
+    this.projectService.updated.subscribe(res => {
+      this.projects = this.projectService.getProjects();
+    })
   }
 
   DeleteProject(projectId, i) {
@@ -49,18 +53,12 @@ export class ProjectComponent implements OnInit {
     this.modalRef = this.modalService.show(template, { class: 'modal-sm' });
   }
 
-  openModalEdit(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, this.config, { class: 'gray modal-lg' })
-    );
-  }
-
-  closeModal(event) {
-    if (event) {
-      this.modalRef.hide();
-      this.projects = this.projectService.getProjects();
-    }
+  openModalEdit(isEdit, project) {
+    const initialState = {
+      message: project,
+      isEdit: isEdit
+    };
+    this.modalRef = this.modalService.show(AddProjectComponent, { initialState });
   }
 
   confirmDelete(): void {

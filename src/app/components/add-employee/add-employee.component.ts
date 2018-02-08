@@ -1,6 +1,8 @@
-import { Component, OnInit, Input,Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from "@angular/forms";
 import { EmployeeService } from "../../services/employee/employee.service";
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 @Component({
   selector: 'app-add-employee',
@@ -9,13 +11,11 @@ import { EmployeeService } from "../../services/employee/employee.service";
 })
 export class AddEmployeeComponent implements OnInit {
 
-  @Input() message: any;
-
-  @Output() close = new EventEmitter<boolean>(false);
   isEdit: boolean = true;
   addEmplo: FormGroup;
+  message: any = null;
 
-  constructor(private employee: EmployeeService) { }
+  constructor(private employee: EmployeeService, public modalRef: BsModalRef) { }
 
   ngOnInit() {
     if (this.message == undefined) {
@@ -26,7 +26,7 @@ export class AddEmployeeComponent implements OnInit {
       this.message.MaxFte = '';
     }
     this.addEmplo = new FormGroup({
-      Id: new FormControl(this.message.Id),
+      EmployeeId: new FormControl(this.message.EmployeeId),
       IsActive: new FormControl(this.message.IsActive),
       Name: new FormControl(this.message.Name, Validators.required),
       SecondName: new FormControl(this.message.SecondName, Validators.required),
@@ -50,7 +50,8 @@ export class AddEmployeeComponent implements OnInit {
   UpdateEmployee() {
     if (this.addEmplo.valid) {
       this.employee.updateEmployee(this.addEmplo.value).subscribe(res => {
-        this.close.next(true);
+        this.employee.refresh(true);
+        this.modalRef.hide();
       });
     }
   }
@@ -58,6 +59,8 @@ export class AddEmployeeComponent implements OnInit {
   AddEmployee() {
     if (this.addEmplo.valid) {
       this.employee.addEmployee(this.addEmplo.value).subscribe(res => {
+        this.employee.refresh(true);
+        this.modalRef.hide();
       });
     }
   }

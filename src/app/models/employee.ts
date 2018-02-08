@@ -1,5 +1,5 @@
 export interface IEmploeesDTO {
-  EmploeeId: number;
+  EmployeeId: number;
   Name: string;
   SecondName: string;
   MaxFte: number;
@@ -8,14 +8,14 @@ export interface IEmploeesDTO {
 }
 
 export class EmployeeModel {
-  Id: number;
+  EmployeeId: number;
   Name: string;
   SecondName: string;
   MaxFte: number;
   FreeFte: number;
 
   constructor(data: IEmploeesDTO) {
-   this.Id = data.EmploeeId;
+   this.EmployeeId = data.EmployeeId;
    this.Name = data.Name;
    this.FreeFte = data.FreeFte;
    this.MaxFte = data.MaxFte;

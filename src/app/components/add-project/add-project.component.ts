@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ProjectService } from "../../services/project/project.service";
+import { BsModalRef } from "ngx-bootstrap";
 
 @Component({
   selector: 'app-add-project',
@@ -9,16 +10,15 @@ import { ProjectService } from "../../services/project/project.service";
 })
 export class AddProjectComponent implements OnInit {
 
-  @Input() message: any;
-  @Output() close = new EventEmitter<boolean>(false);
   isEdit: boolean = true;
   createProj: FormGroup;
-  // minDate = new Date();
+  message: any = null;
   bsRangeValue: any = [new Date(), new Date()];
-  constructor(private project: ProjectService) { }
+  constructor(private project: ProjectService, public modalRef: BsModalRef) { }
 
   ngOnInit() {
     // TODO: Rangevalue
+    console.log(this.message);
     if (this.message == undefined) {
       this.isEdit = false;
       this.message = [];
@@ -28,7 +28,7 @@ export class AddProjectComponent implements OnInit {
       this.message.Comment = '';
     }
     this.createProj = new FormGroup({
-      Id: new FormControl(this.message.Id),
+      ProjectId: new FormControl(this.message.ProjectId),
       IsActive: new FormControl(this.message.IsActive),
       Name: new FormControl(this.message.Name),
       StartDate: new FormControl(this.message.StartDate),
@@ -45,9 +45,11 @@ export class AddProjectComponent implements OnInit {
   }
 
   UpdateProject() {
+    console.log(this.createProj.value);
     if (this.createProj.valid) {
       this.project.updateProject(this.createProj.value).subscribe(res => {
-        this.close.next(true);
+        this.project.refresh(true);
+        this.modalRef.hide();
       });
     }
   }
@@ -55,6 +57,8 @@ export class AddProjectComponent implements OnInit {
   AddProject() {
     if (this.createProj.valid) {
       this.project.addProject(this.createProj.value).subscribe(res => {
+        this.project.refresh(true);
+        this.modalRef.hide();
       });
     }
   }

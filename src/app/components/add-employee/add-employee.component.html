@@ -1,28 +1,30 @@
-<div class="container">
-  <form [formGroup]="addEmplo" (ngSubmit)="Submit()">
-    <div class="form-group">
-      <label for="Name">Name</label>
-      <input type="text" class="form-control" formControlName="Name">
-      <div class="alert-red" role="alert" *ngIf="addEmplo.controls.Name.invalid && addEmplo.controls.Name.touched">
-        Name is Required
-      </div>
-    </div>
+  <div class="modal-body">
+    <div class="container">
+      <form [formGroup]="addEmplo" (ngSubmit)="Submit()">
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text" class="form-control" formControlName="Name">
+          <div class="alert-red" role="alert" *ngIf="addEmplo.controls.Name.invalid && addEmplo.controls.Name.touched">
+            Name is Required
+          </div>
+        </div>
 
-    <div class="form-group">
-      <label for="SecondName">Second Name</label>
-      <input type="text" class="form-control" formControlName="SecondName">
-      <div class="alert-red" role="alert" *ngIf="addEmplo.controls.SecondName.invalid && addEmplo.controls.SecondName.touched">
-        Second Name is Required
-      </div>
-    </div>
+        <div class="form-group">
+          <label for="SecondName">Second Name</label>
+          <input type="text" class="form-control" formControlName="SecondName">
+          <div class="alert-red" role="alert" *ngIf="addEmplo.controls.SecondName.invalid && addEmplo.controls.SecondName.touched">
+            Second Name is Required
+          </div>
+        </div>
 
-     <div class="form-group">  
-      <label for="MaxFte">MaxFte</label>
-      <input type="text" class="form-control" formControlName="MaxFte">
-      <div class="alert-red" role="alert" *ngIf="addEmplo.controls.MaxFte.invalid && (addEmplo.controls.MaxFte.touched || addEmplo.controls.MaxFte.undirty)">
-        Only 0 - 3.0 range is valid
-      </div>
+        <div class="form-group">
+          <label for="MaxFte">MaxFte</label>
+          <input type="text" class="form-control" formControlName="MaxFte">
+          <div class="alert-red" role="alert" *ngIf="addEmplo.controls.MaxFte.invalid && (addEmplo.controls.MaxFte.touched || addEmplo.controls.MaxFte.undirty)">
+            Only 0 - 3.0 range is valid
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success">Submit</button>
+      </form>
     </div>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
-</div>
+  </div>
