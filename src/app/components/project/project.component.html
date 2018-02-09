@@ -14,7 +14,7 @@
   <tbody>
     <tr *ngFor="let project of projects; let i = index">
       <td>{{ project.ProjectId }}</td>
-      <td>{{ project.EndTime | date}}</td>
+      <td>{{ project.EndDate | date:'yyyy-MM-dd'}}</td>
       <td>{{ project.Name }}</td>
       <!-- <td>{{ topic.Author }}</td> -->
       <td><button type="button" class="btn btn-danger btn-table" 

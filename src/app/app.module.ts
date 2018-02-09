@@ -6,8 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule, MatCheckboxModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material';
-import { BsDatepickerModule }from 'ngx-bootstrap/datepicker';
-import { FormGroup,FormControl,ReactiveFormsModule, Validators } from '@angular/forms';
+import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { FormGroup, FormControl, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CollapseModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -15,6 +15,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 import { EmployeeService } from './services/employee/employee.service';
 import { ProjectService } from './services/project/project.service';
+import { AccountService } from "./services/account/account.service";
 
 import { AppComponent } from './app.component';
 import { SharedComponent } from './components/shared/shared.component';
@@ -23,6 +24,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { AddProjectComponent } from './components/add-project/add-project.component';
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { OperationComponent } from './components/operation/operation.component';
+import { LoginComponent } from './components/account/login/login.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'projects', pathMatch: 'full' },
@@ -41,7 +43,8 @@ const appRoutes: Routes = [
     EmployeeComponent,
     AddProjectComponent,
     AddEmployeeComponent,
-    OperationComponent
+    OperationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
@@ -51,14 +54,17 @@ const appRoutes: Routes = [
     MatButtonModule,
     MatCheckboxModule,
     MatIconModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes, { useHash: true }),
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     [CollapseModule],
     ModalModule.forRoot()
   ],
-  providers: [EmployeeService, ProjectService, BsModalRef],
-  bootstrap: [AppComponent]
+  providers: [EmployeeService, ProjectService, BsModalRef, AccountService],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    LoginComponent
+  ]
 })
 export class AppModule { }
 

@@ -13,12 +13,9 @@ export class AddProjectComponent implements OnInit {
   isEdit: boolean = true;
   createProj: FormGroup;
   message: any = null;
-  bsRangeValue: any = [new Date(), new Date()];
   constructor(private project: ProjectService, public modalRef: BsModalRef) { }
 
   ngOnInit() {
-    // TODO: Rangevalue
-    console.log(this.message);
     if (this.message == undefined) {
       this.isEdit = false;
       this.message = [];
@@ -33,6 +30,7 @@ export class AddProjectComponent implements OnInit {
       Name: new FormControl(this.message.Name),
       StartDate: new FormControl(this.message.StartDate),
       EndDate: new FormControl(this.message.EndDate),
+      LastModifyDate: new FormControl(this.message.LastModifyDate),
       Comment: new FormControl(this.message.Comment)
     });
   }
@@ -45,7 +43,6 @@ export class AddProjectComponent implements OnInit {
   }
 
   UpdateProject() {
-    console.log(this.createProj.value);
     if (this.createProj.valid) {
       this.project.updateProject(this.createProj.value).subscribe(res => {
         this.project.refresh(true);

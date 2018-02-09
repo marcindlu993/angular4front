@@ -10,12 +10,12 @@
         <label for="dateRange">Date range</label>
         <div class="row">
           <div class="col-xs-12 col-12 col-md-4 form-group">
-            <input type="text" class="form-control" #dp="bsDatepicker" formControlName="StartDate" bsDatepicker [(bsValue)]="StartDate"
-              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+            <input type="text" class="form-control" #dp="bsDatepicker" formControlName="StartDate" bsDatepicker
+              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
           </div>
           <div class="col-xs-12 col-12 col-md-4 form-group">
-            <input type="text" class="form-control" [minDate]="StartDate" #dp="bsDatepicker" formControlName="EndDate" bsDatepicker [(bsValue)]="EndDate"
-              [bsConfig]="{ dateInputFormat: 'DD-MM-YYYY' }">
+            <input type="text" class="form-control" [minDate]="StartDate" #dp="bsDatepicker" formControlName="EndDate" bsDatepicker
+              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD' }">
           </div>
         </div>
       </div>

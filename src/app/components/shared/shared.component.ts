@@ -1,5 +1,8 @@
 import { Component, OnInit, ElementRef, Renderer2 } from '@angular/core';
 import { RouterModule, Routes, Router } from '@angular/router';
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { LoginComponent } from '../account/login/login.component';
 
 @Component({
   selector: 'app-shared',
@@ -28,19 +31,25 @@ export class SharedComponent implements OnInit {
       "name": "About", "id": "0", "icon": "favorite", "route": "employees"
     }
   ];
+  modalRef: BsModalRef;
 
   constructor(
-            private router: Router,
-            // private el: ElementRef,
-            // private rd: Renderer2
-          ) { }
-
-  goRoute(routeString: string) {
-    console.log(routeString);
-    this.router.navigate([routeString]);
-  }
+    private router: Router,
+    private modalService: BsModalService
+  ) { }
 
   ngOnInit() {
     this.menuLeft;
+  }
+
+  goRoute(routeString: string) {
+    this.router.navigate([routeString]);
+  }
+
+  openLoginModal() {
+    const initialState = {
+
+    };
+    this.modalRef = this.modalService.show(LoginComponent, {initialState});
   }
 }
