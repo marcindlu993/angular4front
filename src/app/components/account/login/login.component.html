@@ -1,10 +1,12 @@
 <div class="modal-header">
-  <h4 class="modal-title pull-left">Login</h4>
   <button type="button" class="close pull-right" aria-label="Close" (click)="modalRef.hide()">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
 <div class="modal-body">
+  <div *ngIf="errorLogin" class="alert alert-danger" role="alert">
+    Invalid login or password.
+  </div>
   <form [formGroup]="logTo" (ngSubmit)="Submit()">
     <div class="form-group">
       <label for="Login">Login</label>

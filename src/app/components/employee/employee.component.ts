@@ -23,13 +23,13 @@ export class EmployeeComponent implements OnInit {
     backdrop: true,
     ignoreBackdropClick: false
   };
-  
+
   constructor(private employeeService: EmployeeService, private modalService: BsModalService) { }
 
   ngOnInit() {
     this.employees = this.employeeService.getEmployees();
     this.employeeService.updated.subscribe(res => {
-      if(res){
+      if (res) {
         this.employees = this.employeeService.getEmployees();
       }
     })
@@ -38,7 +38,7 @@ export class EmployeeComponent implements OnInit {
   DeleteEmployee(emploId, i) {
     this.employeeService.deleteEmployee(emploId).subscribe(res => {
       this.employees.splice(i, 1);
-    });
+    })
   }
 
   setDeleteData(employee, i) {

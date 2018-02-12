@@ -12,6 +12,7 @@ import { CollapseModule } from 'ngx-bootstrap';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+import { AlertModule } from 'ngx-bootstrap/alert';
 
 import { EmployeeService } from './services/employee/employee.service';
 import { ProjectService } from './services/project/project.service';
@@ -58,7 +59,8 @@ const appRoutes: Routes = [
     BsDatepickerModule.forRoot(),
     ReactiveFormsModule,
     [CollapseModule],
-    ModalModule.forRoot()
+    ModalModule.forRoot(),
+    AlertModule.forRoot()
   ],
   providers: [EmployeeService, ProjectService, BsModalRef, AccountService],
   bootstrap: [AppComponent],

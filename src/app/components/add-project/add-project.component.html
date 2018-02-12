@@ -30,3 +30,10 @@
     </form>
   </div>
 </div>
+
+<alert *ngIf="errorAdd" type="danger" class="alert-corner" dismissOnTimeout="5000">
+  Can not add new employee
+</alert>
+<alert *ngIf="errorUpdate" type="danger" class="alert-corner" dismissOnTimeout="5000">
+  Can not update data
+</alert>

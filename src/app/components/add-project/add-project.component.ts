@@ -47,7 +47,7 @@ export class AddProjectComponent implements OnInit {
       this.project.updateProject(this.createProj.value).subscribe(res => {
         this.project.refresh(true);
         this.modalRef.hide();
-      });
+      })
     }
   }
 
@@ -56,7 +56,7 @@ export class AddProjectComponent implements OnInit {
       this.project.addProject(this.createProj.value).subscribe(res => {
         this.project.refresh(true);
         this.modalRef.hide();
-      });
+      })
     }
   }
 }

@@ -27,6 +27,7 @@ export class ProjectComponent implements OnInit {
 
   constructor(private projectService: ProjectService, private modalService: BsModalService) { }
 
+
   ngOnInit() {
     this.projects = this.projectService.getProjects();
     this.projectService.updated.subscribe(res => {
@@ -35,7 +36,6 @@ export class ProjectComponent implements OnInit {
   }
 
   DeleteProject(projectId, i) {
-    console.log(projectId, i);
     this.projectService.deleteProject(projectId).subscribe(res => {
       this.projects.splice(i, 1);
     })

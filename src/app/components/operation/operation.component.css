@@ -1,0 +1,10 @@
+.hop-container {
+    padding: 10px;
+    min-height: 100px;
+    min-width: 200px;
+    width: 45%;
+    max-height: 90vh;
+    margin: 10px;
+    border: 1px solid #424242;
+    border-radius: 3px;
+}

@@ -12,6 +12,7 @@ import { IUser } from "../../../models/user";
 export class LoginComponent implements OnInit {
 
   logTo: FormGroup;
+  errorLogin: boolean;
   constructor(private accountService: AccountService, public modalRef: BsModalRef) { }
 
   ngOnInit() {
@@ -26,6 +27,7 @@ export class LoginComponent implements OnInit {
       this.modalRef.hide();
       window.localStorage.setItem('authorizationDataToken', res.access_token);
       window.localStorage.setItem('authorizationDataUserName', res.userName);
-    })
+    },
+      error => this.errorLogin = true)
   }
 }

@@ -9,3 +9,9 @@
     margin-bottom: 5px;
 }
 
+.alert-corner{
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    opacity: 0.8;
+}

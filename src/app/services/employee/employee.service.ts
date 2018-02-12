@@ -18,11 +18,12 @@ export class EmployeeService {
   getEmployees() {
     let result: any[] = [];
     let headers = this.setHeaders();
-    this.HttpClient.get(`${this.apiUrl}/Employees`, { headers }).subscribe((res: IEmploeesDTO[]) => {
-      res.forEach(element => {
-        result.push(new EmployeeModel(element));
-      });
-    });
+    this.HttpClient.get(`${this.apiUrl}/Employees`, { headers }).subscribe(
+      (res: IEmploeesDTO[]) => {
+        res.forEach(element => {
+          result.push(new EmployeeModel(element));
+        })
+      })
     return result;
   }
 

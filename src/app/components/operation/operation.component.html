@@ -1,3 +1,21 @@
-<p>
-  operation works!
-</p>
+<div class="row">
+  <div class="hop-container">
+    <table class="table table-striped">
+      <tbody>
+        <tr *ngFor="let employee of employeesData">
+          <td>{{ employee.EmployeeId }} {{ employee.Name }} {{ employee.SecondName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="hop-container">
+    <table class="table table-striped">
+      <tbody>
+        <tr *ngFor="let employee of employeesData">
+          <td>{{ employee.EmployeeId }} {{ employee.Name }} {{ employee.SecondName }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

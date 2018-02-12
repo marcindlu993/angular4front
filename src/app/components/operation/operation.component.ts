@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { EmployeeService } from "../../services/employee/employee.service";
+import { ProjectService } from "../../services/project/project.service";
+import { EmployeeModel } from "../../models/employee";
+import { ProjectModel } from "../../models/project";
 
 @Component({
   selector: 'app-operation',
@@ -7,9 +11,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OperationComponent implements OnInit {
 
-  constructor() { }
+  constructor(private employeeService: EmployeeService, private projectService: ProjectService ) {}
+  employeesData: EmployeeModel[] = [];
+  projectsData: ProjectModel[] = [];
+  employeesToProjectData: EmployeeModel[] = [];
 
   ngOnInit() {
+    this.employeesData = this.employeeService.getEmployees()
+    this.projectsData = this.projectService.getProjects();
   }
+
+  
 
 }
