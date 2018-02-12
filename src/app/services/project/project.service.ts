@@ -12,14 +12,14 @@ export class ProjectService {
   apiUrl: string = "http://localhost:1485/api";
   updated = new BehaviorSubject<boolean>(false);
 
-  constructor(private http: HttpClient) {
+  constructor(private httpClient: HttpClient) {
     this.updated.asObservable();
-   }
+  }
 
   getProjects() {
     let result: any[] = [];
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
-    this.http.get(`${this.apiUrl}/Projects`, { headers }).subscribe((res: IProjectDTO[]) => {
+    let headers = this.setHeaders();
+    this.httpClient.get(`${this.apiUrl}/Projects`, { headers }).subscribe((res: IProjectDTO[]) => {
       res.forEach(element => {
         result.push(new ProjectModel(element));
       });
@@ -27,7 +27,7 @@ export class ProjectService {
     return result;
   }
   addProject(proj) {
-    let headers = new HttpHeaders().set('Content-Type', 'application/json');
+    let headers = this.setHeaders();
     var data = {
       StartDate: proj.StartDate,
       EndDate: proj.EndDate,
@@ -36,11 +36,11 @@ export class ProjectService {
       Comment: proj.Comment,
       IsActive: true
     }
-    return this.http.post(`${this.apiUrl}/Projects`, data, { headers });
+    return this.httpClient.post(`${this.apiUrl}/Projects`, data, { headers });
   }
 
   updateProject(proj): Observable<any> {
-    let headers = new HttpHeaders().set('Content-Type','application/json');
+    let headers = this.setHeaders();
     var data = {
       StartDate: new Date(proj.StartDate).toDateString(),
       EndDate: new Date(proj.EndDate).toDateString(),
@@ -50,16 +50,24 @@ export class ProjectService {
       ProjectId: proj.ProjectId,
       IsActive: true
     }
-    return this.http.put(`${this.apiUrl}/Projects/${proj.ProjectId}`, data, {headers});
+    return this.httpClient.put(`${this.apiUrl}/Projects/${proj.ProjectId}`, data, { headers });
   }
 
-
   deleteProject(id): Observable<any> {
-    let headers = new HttpHeaders().set('Content-Type','application/json');
-    return this.http.post(`${this.apiUrl}/Projects/SetFlag/${id}`, "{}" ,{headers});
+    let headers = this.setHeaders();
+    return this.httpClient.post(`${this.apiUrl}/Projects/SetFlag/${id}`, "{}", { headers });
   }
 
   refresh(value: boolean) {
     this.updated.next(value);
+  }
+
+  setHeaders() {
+    let headersJson = {
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + window.localStorage.getItem("authorizationDataToken")
+    }
+    let headers = new HttpHeaders(headersJson);
+    return headers;
   }
 }

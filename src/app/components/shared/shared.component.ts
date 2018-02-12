@@ -3,6 +3,7 @@ import { RouterModule, Routes, Router } from '@angular/router';
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import { LoginComponent } from '../account/login/login.component';
+import { AccountService } from "../../services/account/account.service";
 
 @Component({
   selector: 'app-shared',
@@ -11,6 +12,7 @@ import { LoginComponent } from '../account/login/login.component';
 })
 export class SharedComponent implements OnInit {
 
+  userName: string;
   menuLeft: any[] = [
     {
       "name": "Projects", "id": "0", "icon": "assignment", "route": ""
@@ -35,7 +37,8 @@ export class SharedComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private modalService: BsModalService
+    private modalService: BsModalService,
+    private accountService: AccountService
   ) { }
 
   ngOnInit() {
@@ -50,6 +53,19 @@ export class SharedComponent implements OnInit {
     const initialState = {
 
     };
-    this.modalRef = this.modalService.show(LoginComponent, {initialState});
+    this.modalRef = this.modalService.show(LoginComponent, { initialState });
+  }
+
+  logOut() {
+    let some = this.accountService.logOutFromService();
+  }
+
+  isLogin() {
+    if (window.localStorage.getItem("authorizationDataUserName").length > 0){
+      this.userName = window.localStorage.getItem("authorizationDataUserName").split("@", 1).toString();
+      return true;
+    }
+    else
+      return false;
   }
 }

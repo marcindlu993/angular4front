@@ -35,6 +35,7 @@ export class ProjectComponent implements OnInit {
   }
 
   DeleteProject(projectId, i) {
+    console.log(projectId, i);
     this.projectService.deleteProject(projectId).subscribe(res => {
       this.projects.splice(i, 1);
     })
@@ -62,7 +63,7 @@ export class ProjectComponent implements OnInit {
   }
 
   confirmDelete(): void {
-    this.DeleteProject(this.project.Id, this.projectIndex);
+    this.DeleteProject(this.project.ProjectId, this.projectIndex);
     this.modalRef.hide();
   }
 

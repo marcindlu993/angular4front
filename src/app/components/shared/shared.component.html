@@ -2,7 +2,22 @@
   <div class="row justify-content-between">
     <div class="col-2">
       <div class="btn-group-vertical menu-left">
-        <button type="button" class="btn btn-secondary" (click)="openLoginModal()">Login</button>
+
+        <button *ngIf="isLogin()" type="button" class="btn btn-secondary">
+          <span class="nav-button-descritpion">Hello, {{ userName }}</span>
+        </button>
+        
+        <hr>
+        <button *ngIf="isLogin()" type="button" class="btn btn-secondary" (click)="logOut()">
+          <mat-icon>eject</mat-icon>
+          <span class="nav-button-descritpion">LogOut</span>
+        </button>
+
+        <button *ngIf="!isLogin()" type="button" class="btn btn-secondary" (click)="openLoginModal()">
+          <mat-icon>person</mat-icon>
+          <span class="nav-button-descritpion">Login</span>
+        </button>
+
         <hr>
         <button type="button" class="btn btn-secondary" (click)="goRoute(item.route)" *ngFor="let item of menuLeft">
             <mat-icon>{{ item.icon }}</mat-icon>
@@ -11,7 +26,7 @@
       </div>
     </div>
     <div class="col-md-10">
-      <router-outlet></router-outlet>
+      <router-outlet *ngIf="isLogin()"></router-outlet>
     </div>
   </div>
 </div>
