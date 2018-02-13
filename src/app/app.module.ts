@@ -26,6 +26,7 @@ import { AddProjectComponent } from './components/add-project/add-project.compon
 import { AddEmployeeComponent } from './components/add-employee/add-employee.component';
 import { OperationComponent } from './components/operation/operation.component';
 import { LoginComponent } from './components/account/login/login.component';
+import { ProjectInfoComponent } from './components/project-info/project-info.component';
 
 const appRoutes: Routes = [
   { path: '', redirectTo: 'projects', pathMatch: 'full' },
@@ -33,7 +34,8 @@ const appRoutes: Routes = [
   { path: 'employees', component: EmployeeComponent },
   { path: 'add-project', component: AddProjectComponent },
   { path: 'add-employee', component: AddEmployeeComponent },
-  { path: 'operation', component: OperationComponent }
+  { path: 'operation', component: OperationComponent },
+  { path: 'project-info/:id', component: ProjectInfoComponent}
 ]
 
 @NgModule({
@@ -45,7 +47,8 @@ const appRoutes: Routes = [
     AddProjectComponent,
     AddEmployeeComponent,
     OperationComponent,
-    LoginComponent
+    LoginComponent,
+    ProjectInfoComponent
   ],
   imports: [
     BrowserModule,

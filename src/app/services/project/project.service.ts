@@ -16,16 +16,16 @@ export class ProjectService {
     this.updated.asObservable();
   }
 
-  getProjects() {
-    let result: any[] = [];
+  async getProjects() {
     let headers = this.setHeaders();
-    this.httpClient.get(`${this.apiUrl}/Projects`, { headers }).subscribe((res: IProjectDTO[]) => {
-      res.forEach(element => {
-        result.push(new ProjectModel(element));
-      });
-    });
-    return result;
+    return await this.httpClient.get(`${this.apiUrl}/Projects`, { headers }).toPromise();
   }
+
+  async getProject(id: number) {
+    let headers = this.setHeaders();
+    return await this.httpClient.get(`${this.apiUrl}/Projects/${id}`, { headers }).toPromise();
+  }
+
   addProject(proj) {
     let headers = this.setHeaders();
     var data = {

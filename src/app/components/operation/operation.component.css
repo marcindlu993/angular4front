@@ -5,6 +5,20 @@
     width: 45%;
     max-height: 90vh;
     margin: 10px;
+     /* border: 1px solid #424242;  */
+    /* border-radius: 3px; */
+}
+
+.hop-container > .table-hop-container {
+    padding: 5px, 5px, 30px, 5px; 
+    margin-bottom: 30px;
+    min-width: 200px;
     border: 1px solid #424242;
     border-radius: 3px;
+}
+
+.btn-table {
+    font-size: 10px;
+    padding-top: 2px;
+    padding-bottom: 2px; 
 }

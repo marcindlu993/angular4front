@@ -8,7 +8,8 @@
   <thead class="thead-dark">
     <tr>
       <th scope="col" *ngFor="let item of headerTable">{{ item }}</th>
-      <th></th><th></th>
+      <th></th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,10 +18,9 @@
       <td>{{ project.EndDate | date:'yyyy-MM-dd'}}</td>
       <td>{{ project.Name }}</td>
       <!-- <td>{{ topic.Author }}</td> -->
-      <td><button type="button" class="btn btn-danger btn-table" 
-        (click)="openModalConfirm(template); setDeleteData(project, i)">Delete</button></td>
-      <td><button type="button" class="btn btn-warning btn-table" 
-        (click)="openModalEdit(true, project)">Edit</button></td>
+      <td><button type="button" class="btn btn-danger btn-table" (click)="openModalConfirm(template); setDeleteData(project, i)">Delete</button></td>
+      <td><button type="button" class="btn btn-warning btn-table" (click)="openModalEdit(true, project)">Edit</button></td>
+      <td><button type="button" class="btn btn-info btn-table" (click)="openProjectInfo(project)">Show info</button></td>
     </tr>
   </tbody>
 </table>
@@ -29,7 +29,7 @@
   <div class="modal-body text-center">
     <p>Do you want to confirm delete?</p>
     <p>Project name: {{ project.Name }}</p>
-    <button type="button" class="btn btn-default" (click)="confirmDelete()" >Yes</button>
-    <button type="button" class="btn btn-primary" (click)="decline()" >No</button>
+    <button type="button" class="btn btn-default" (click)="confirmDelete()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
   </div>
 </ng-template>

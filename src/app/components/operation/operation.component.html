@@ -1,21 +1,43 @@
 <div class="row">
   <div class="hop-container">
-    <table class="table table-striped">
-      <tbody>
-        <tr *ngFor="let employee of employeesData">
-          <td>{{ employee.EmployeeId }} {{ employee.Name }} {{ employee.SecondName }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      Filtry: taki i taki taki i taki
+    </div>
+    <div class="table-hop-container">
+      <table class="table table-striped">
+        <tbody>
+          <tr *ngFor="let employee of employeesData; let id = index">
+            <td (click)="addToProject(employee, id)">{{ employee.Name }}</td>
+            <td (click)="addToProject(employee, id)">{{ employee.SecondName }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="hop-container">
-    <table class="table table-striped">
-      <tbody>
-        <tr *ngFor="let employee of employeesData">
-          <td>{{ employee.EmployeeId }} {{ employee.Name }} {{ employee.SecondName }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div>
+      Projekt: nananananaa
+    </div>
+    <div class="table-hop-container">
+      <table class="table table-striped">
+        <tbody>
+          <tr *ngFor="let employee of employeesInProjectData; let id = index">
+            <td>{{ employee.Name }}</td>
+            <td>{{ employee.SecondName }}</td>
+            <td><button type="button" class="btn btn-warning btn-table" (click)="openRemoveModal(confirmRemove, employee, id)">Remove</button></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </div>
+
+<ng-template #confirmRemove>
+  <div class="modal-body text-center">
+    <p>Do you want to remove this employee?</p>
+    <p>{{employeeToRemoveFromProject.Name}} {{employeeToRemoveFromProject.SecondName}}</p>
+    <button type="button" class="btn btn-default" (click)="confirm()">Yes</button>
+    <button type="button" class="btn btn-primary" (click)="decline()">No</button>
+  </div>
+</ng-template>
